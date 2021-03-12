@@ -1,38 +1,84 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import addData from '../action';
 import Header from '../components/Header';
 import data from '../stocks.json';
 
 
-function List() {
-  const [dataOrdened, setDataOrdened] = useState([]);
-  let dataModified = data;
+class List extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      dataOrdened: []
+    }
+    this.organizingChart = this.organizingChart.bind(this);
+    this.orderByPrice = this.orderByPrice.bind(this);
+    this.orderByVariation = this.orderByVariation.bind(this);
+  }
 
   // Para plotar o gráfico é necessário valores x e y. Os dados fornecidos tem apenas um valor. Por isso, abaixo é adicionado um valor x para cada valor y fornecido no array.
 
-  const addXValue = (yValue, index) => {
+  addXValue(yValue, index) {
     return { x: index, y: yValue }
   }
 
-  dataModified = dataModified.map((element) => {
-    return { ...element, chart: element.chart.map(addXValue) }
-  })
+  organizingChart() {
+    const dataModified = data.map((element) => {
+      return { ...element, chart: element.chart.map(this.addXValue) }
+    });
+    this.setState({ dataOrdened: dataModified });
+  }
 
-  useEffect(() => {
+  componentDidMount() {
+    this.organizingChart();
+    const { saveData } = this.props;
+    const { dataOrdened } = this.state;
+    saveData(dataOrdened);
+  }
 
-  })
+  orderByPrice() {
+    const { dataOrdened } = this.state;
+    const dataModified = dataOrdened.sort(function (a, b) {
+      return a.price - b.price;
+    });
+    this.setState({ dataOrdened: dataModified });
+    console.log('price')
+  }
 
-  return (
-    <div>
-      <Header />
-      <h1>Lista</h1>
-    </div>
-  );
+  orderByVariation() {
+    const { dataOrdened } = this.state;
+    const dataModified = dataOrdened.sort(function (a, b) {
+      return a.variation - b.variation;
+    });
+    this.setState({ dataOrdened: dataModified });
+    console.log(dataModified)
+  }
+
+  componentDidUpdate() {
+    const { saveData } = this.props;
+    const { dataOrdened } = this.state;
+    saveData(dataOrdened);
+  }
+
+  render() {
+    return (
+      <div>
+        <Header />
+        <h1>Lista</h1>
+        <button onClick={this.orderByPrice}>Ordenar os ativos por preço</button>
+        <button onClick={this.orderByVariation}>Ordenar os ativos pela variação</button>
+      </div>
+    );
+  }
 }
 
 const mapDispatchToProps = (dispatch) => ({
   saveData: (data) => dispatch(addData(data))
 })
+
+List.propTypes = {
+  saveData: PropTypes.func.isRequired,
+}
 
 export default connect(null, mapDispatchToProps)(List);

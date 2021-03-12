@@ -3,7 +3,7 @@ const INITIAL_STATE = [];
 function dataReducer(state = INITIAL_STATE, action) {
   switch(action.type) {
     case 'SAVE_DATA':
-      return action.value
+      return action.data
     default:
       return state
   }
