@@ -1,10 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import {addData, test} from '../action';
 import Header from '../components/Header';
 import data from '../stocks.json';
-import Assets from '../components/Assets';
+import { AreaSeries, XYPlot } from 'react-vis';
 
 class List extends React.Component {
   constructor() {
@@ -27,72 +24,70 @@ class List extends React.Component {
     const dataModified = data.map((element) => {
       return { ...element, chart: element.chart.map(this.addXValue) }
     });
-    console.log(dataModified)
-    // this.setState({ dataOrdened: dataModified });
-    const { saveData } = this.props;
-    saveData(dataModified)
+    this.setState({ dataOrdened: dataModified });
   }
 
   componentDidMount() {
     this.organizingChart();
-    // const { saveData } = this.props;
-    // const { dataOrdened } = this.state;
-    // saveData(dataOrdened);
   }
 
   orderByPrice() {
-    // const { dataOrdened } = this.state;
-    const { assets } = this.props
-    const dataModified = assets.sort(function (a, b) {
+    const { dataOrdened } = this.state;
+    const dataModified = dataOrdened.sort(function (a, b) {
       return a.price - b.price;
     });
-    // this.setState({ dataOrdened: dataModified });
-    const { saveData } = this.props;
-    saveData(dataModified)
+    this.setState({ dataOrdened: dataModified });
   }
 
   orderByVariation() {
-    // const { dataOrdened } = this.state;
-    const { assets } = this.props
-
-    const dataModified = assets.sort(function (a, b) {
+    const { dataOrdened } = this.state;
+    const dataModified = dataOrdened.sort(function (a, b) {
       return a.variation - b.variation;
     });
-    // this.setState({ dataOrdened: dataModified });
-    const { saveData } = this.props;
-    saveData(dataModified)
+    this.setState({ dataOrdened: dataModified });
   }
 
-  // componentDidUpdate() {
-  //   const { saveData } = this.props;
-  //   const { dataOrdened } = this.state;
-  //   saveData(dataOrdened);
-  // }
+  addToFavorites(asset) {
+    let arrayAssets = JSON.parse(localStorage.getItem('assets'));
+    if (arrayAssets) {
+      const includesAsset = arrayAssets.some((element) => element.stock === asset.stock);
+      console.log(includesAsset)
+      if(!includesAsset) {
+        console.log('teste')
+        arrayAssets.push(asset);
+        localStorage.setItem('assets', JSON.stringify(arrayAssets));
+      }
+    } else {
+      arrayAssets = [asset];
+      localStorage.setItem('assets', JSON.stringify(arrayAssets))
+    }
+  }
 
   render() {
+    const { dataOrdened } = this.state;
     return (
       <div>
         <Header />
-        <h1>Lista</h1>
+        <h1>Lista dos assets</h1>
         <button onClick={this.orderByPrice}>Ordenar os ativos por preço</button>
         <button onClick={this.orderByVariation}>Ordenar os ativos pela variação</button>
-        <Assets />
+        {dataOrdened.map((asset) => (
+          <div key={asset.stock}>
+            <h3>{asset.stock}</h3>
+            <span>{asset.price} | </span><span>{asset.variation} %</span><span onClick={() => this.addToFavorites(asset)}><button>Favoritar</button></span>
+            <XYPlot height={200} width={600}>
+              <AreaSeries
+                data={asset.chart}
+                opacity={0.5}
+                style={{}}
+              />
+            </XYPlot>
+          </div>
+        ))}
       </div>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  saveData: (data) => dispatch(addData(data)),
-  testando: (valor) => dispatch(test(valor))
-})
 
-const mapStateToProps = (state) => ({
-  assets: state.assets,
-})
-
-List.propTypes = {
-  saveData: PropTypes.func.isRequired,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(List);
+export default List;
