@@ -4,17 +4,17 @@ import './App.css';
 import Favorites from './pages/Favorites';
 import List from './pages/List';
 
-class App extends React.Component{
+class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={List} />
-        <Route exact path="/favorites" component={Favorites} />
-      </Switch>
-    </BrowserRouter>
-  );
-}
+        <Switch>
+          <Route exact path="/" component={List} />
+          <Route exact path="/favorites" component={Favorites} />
+        </Switch>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;

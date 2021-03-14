@@ -12,6 +12,7 @@ class List extends React.Component {
     this.organizingChart = this.organizingChart.bind(this);
     this.orderByPrice = this.orderByPrice.bind(this);
     this.orderByVariation = this.orderByVariation.bind(this);
+    this.defaultOrder = this.defaultOrder.bind(this);
   }
 
   // Para plotar o gráfico é necessário valores x e y. Os dados fornecidos tem apenas um valor. Por isso, abaixo é adicionado um valor x para cada valor y fornecido no array.
@@ -21,14 +22,13 @@ class List extends React.Component {
   }
 
   organizingChart() {
-    const dataModified = data.map((element) => {
-      return { ...element, chart: element.chart.map(this.addXValue) }
-    });
-    this.setState({ dataOrdened: dataModified });
+    return data.map((element) => (
+      { ...element, chart: element.chart.map(this.addXValue) }
+    ));
   }
 
   componentDidMount() {
-    this.organizingChart();
+    this.setState({ dataOrdened: this.organizingChart() })
   }
 
   orderByPrice() {
@@ -51,9 +51,7 @@ class List extends React.Component {
     let arrayAssets = JSON.parse(localStorage.getItem('assets'));
     if (arrayAssets) {
       const includesAsset = arrayAssets.some((element) => element.stock === asset.stock);
-      console.log(includesAsset)
-      if(!includesAsset) {
-        console.log('teste')
+      if (!includesAsset) {
         arrayAssets.push(asset);
         localStorage.setItem('assets', JSON.stringify(arrayAssets));
       }
@@ -63,31 +61,37 @@ class List extends React.Component {
     }
   }
 
+  defaultOrder() {
+    this.setState({ dataOrdened: this.organizingChart() });
+  }
+
   render() {
     const { dataOrdened } = this.state;
     return (
       <div>
         <Header />
-        <h1>Lista dos assets</h1>
-        <button onClick={this.orderByPrice}>Ordenar os ativos por preço</button>
-        <button onClick={this.orderByVariation}>Ordenar os ativos pela variação</button>
-        {dataOrdened.map((asset) => (
-          <div key={asset.stock}>
-            <h3>{asset.stock}</h3>
-            <span>{asset.price} | </span><span>{asset.variation} %</span><span onClick={() => this.addToFavorites(asset)}><button>Favoritar</button></span>
-            <XYPlot height={200} width={600}>
-              <AreaSeries
-                data={asset.chart}
-                opacity={0.5}
-                style={{}}
-              />
-            </XYPlot>
-          </div>
-        ))}
+        <div className="page">
+          <h1>Ativos</h1>
+          <button onClick={this.orderByPrice}>Ordenar os ativos por preço</button>
+          <button onClick={this.orderByVariation}>Ordenar os ativos pela variação</button>
+          <button onClick={this.defaultOrder}>Ordenação padrão</button>
+          {dataOrdened.map((asset) => (
+            <div key={asset.stock}>
+              <h3>{asset.stock}</h3>
+              <span>{asset.price} | </span><span>{asset.variation} %</span><span><button onClick={() => this.addToFavorites(asset)}>Favoritar</button></span>
+              <XYPlot height={200} width={600}>
+                <AreaSeries
+                  data={asset.chart}
+                  opacity={0.5}
+                  style={{}}
+                />
+              </XYPlot>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
 }
-
 
 export default List;
