@@ -61,11 +61,12 @@ class Assets extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  assets: state,
+  assets: state.assets,
+  teste: state.teste
 });
 
 Assets.propTypes = {
   assets: PropTypes.arrayOf.isRequired,
 }
 
-export default connect(mapStateToProps)(Assets);
+export default connect(mapStateToProps, null)(Assets);

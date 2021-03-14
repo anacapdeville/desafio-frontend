@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import addData from '../action';
+import {addData, test} from '../action';
 import Header from '../components/Header';
 import data from '../stocks.json';
 import Assets from '../components/Assets';
-
 
 class List extends React.Component {
   constructor() {
@@ -28,41 +27,47 @@ class List extends React.Component {
     const dataModified = data.map((element) => {
       return { ...element, chart: element.chart.map(this.addXValue) }
     });
-    this.setState({ dataOrdened: dataModified });
+    console.log(dataModified)
+    // this.setState({ dataOrdened: dataModified });
+    const { saveData } = this.props;
+    saveData(dataModified)
   }
 
   componentDidMount() {
     this.organizingChart();
-    const { saveData } = this.props;
-    const { dataOrdened } = this.state;
-    saveData(dataOrdened);
+    // const { saveData } = this.props;
+    // const { dataOrdened } = this.state;
+    // saveData(dataOrdened);
   }
 
   orderByPrice() {
-    const { dataOrdened } = this.state;
-    const dataModified = dataOrdened.sort(function (a, b) {
+    // const { dataOrdened } = this.state;
+    const { assets } = this.props
+    const dataModified = assets.sort(function (a, b) {
       return a.price - b.price;
     });
-    this.setState({ dataOrdened: dataModified });
+    // this.setState({ dataOrdened: dataModified });
     const { saveData } = this.props;
     saveData(dataModified)
   }
 
   orderByVariation() {
-    const { dataOrdened } = this.state;
-    const dataModified = dataOrdened.sort(function (a, b) {
+    // const { dataOrdened } = this.state;
+    const { assets } = this.props
+
+    const dataModified = assets.sort(function (a, b) {
       return a.variation - b.variation;
     });
-    this.setState({ dataOrdened: dataModified });
+    // this.setState({ dataOrdened: dataModified });
     const { saveData } = this.props;
     saveData(dataModified)
   }
 
-  componentDidUpdate() {
-    const { saveData } = this.props;
-    const { dataOrdened } = this.state;
-    saveData(dataOrdened);
-  }
+  // componentDidUpdate() {
+  //   const { saveData } = this.props;
+  //   const { dataOrdened } = this.state;
+  //   saveData(dataOrdened);
+  // }
 
   render() {
     return (
@@ -78,11 +83,16 @@ class List extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  saveData: (data) => dispatch(addData(data))
+  saveData: (data) => dispatch(addData(data)),
+  testando: (valor) => dispatch(test(valor))
+})
+
+const mapStateToProps = (state) => ({
+  assets: state.assets,
 })
 
 List.propTypes = {
   saveData: PropTypes.func.isRequired,
 }
 
-export default connect(null, mapDispatchToProps)(List);
+export default connect(mapStateToProps, mapDispatchToProps)(List);

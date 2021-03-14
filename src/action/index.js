@@ -1,4 +1,4 @@
-const addData = (data) => {
+export const addData = (data) => {
   console.log(data)
   return {
     type: 'SAVE_DATA',
@@ -6,4 +6,7 @@ const addData = (data) => {
   }
 }
 
-export default addData;
+export const test = (valor) => ({
+  type: 'TEST',
+  teste: valor
+})
