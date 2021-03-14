@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import addData from '../action';
 import Header from '../components/Header';
 import data from '../stocks.json';
+import Assets from '../components/Assets';
 
 
 class List extends React.Component {
@@ -43,7 +44,8 @@ class List extends React.Component {
       return a.price - b.price;
     });
     this.setState({ dataOrdened: dataModified });
-    console.log('price')
+    const { saveData } = this.props;
+    saveData(dataModified)
   }
 
   orderByVariation() {
@@ -52,7 +54,8 @@ class List extends React.Component {
       return a.variation - b.variation;
     });
     this.setState({ dataOrdened: dataModified });
-    console.log(dataModified)
+    const { saveData } = this.props;
+    saveData(dataModified)
   }
 
   componentDidUpdate() {
@@ -68,6 +71,7 @@ class List extends React.Component {
         <h1>Lista</h1>
         <button onClick={this.orderByPrice}>Ordenar os ativos por preço</button>
         <button onClick={this.orderByVariation}>Ordenar os ativos pela variação</button>
+        <Assets />
       </div>
     );
   }
