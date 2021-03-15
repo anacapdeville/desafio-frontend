@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# Lista de ativos
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Tabela de conteúdos
+  * [Sobre](#Sobre)
+  * [Instalação](#instalação)
+  * [Como usar](#como-usar)
+  * [Tecnologias](#tecnologias)
 
-In the project directory, you can run:
+## Sobre
+Esse projeto exibe uma lista de ativos que pode ser ordenada pelo preço e variaçao, cada ativo pode ser favoritado. Os ativos favoritados vão para a página de favoritos e também podem ser ordenados por preço e variação. Na página de favoritados é possível remover cada ativo da lista de favoritados.
 
-### `npm start`
+##### Tela da página com lista de todos os ativos:
+![pagina-inicial]()
+##### Tela da página de ativos favoritos:
+![pagina-registrar]()
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Instalação
+1. Acesse o terminal e clone o projeto:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+git clone git@github.com:anacapdeville/desafio-frontend.git
+```
 
-### `npm test`
+2. Acesse o diretório:
+```
+cd desafio-frontend
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Entre na branch que o desafio foi realizado e instale as dependências:
+```
+git checkout desafio-ana
+npm install
+```
 
-### `npm run build`
+4. Inicializa o projeto:
+```
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Como usar
+A página inicial possui a lista de todos os ativos. Ao clicar no botão 'Ordenar os ativos por preço' a lista é ordenada de maneira crescente pelo preço. Ao clicar no botão 'Ordenar os ativos pela variação' a lista fica ordenada pela variação dos preços dos ativos de forma crescente. Clicando em 'Ordenação padrão' a lista volta a ficar ordenada como no início. Cada ativo está rodeado por uma borda e dentro da borda está o nome do ativo, o preço do ativo, a variação do preço e o botão de favoritar. Ao clicar nesse botão o ativo escolhido vai para a lista dos ativos favoritados.
+A página de ativos favoritos possui os mesmos botões de ordenação da página com a lista de todos os ativos e eles funcionam da mesma maneira. As informações de cada ativo são as mesmas, porém cada ativo possui um botão para removê-lo da lista de favoritos.
+Na parte superior cada página possui um cabeçalho com links que redirecionam para a página que possui a lista de todos os ativos e para a página que possui os ativos favoritados.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Tecnologias
+Esse projeto foi desenvolvido em React e React Router Dom para controle da navegação.
