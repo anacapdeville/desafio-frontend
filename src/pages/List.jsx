@@ -71,14 +71,24 @@ class List extends React.Component {
       <div>
         <Header />
         <div className="page">
-          <h1>Ativos</h1>
-          <button onClick={this.orderByPrice}>Ordenar os ativos por preço</button>
-          <button onClick={this.orderByVariation}>Ordenar os ativos pela variação</button>
-          <button onClick={this.defaultOrder}>Ordenação padrão</button>
+          <h1 className="title">Ativos</h1>
+          <div className="order-buttons-div">
+            <button onClick={this.orderByPrice} className="order-buttons">Ordenar os ativos por preço</button>
+            <button onClick={this.orderByVariation} className="order-buttons">Ordenar os ativos pela variação</button>
+            <button onClick={this.defaultOrder} className="order-buttons">Ordenação padrão</button>
+          </div>
           {dataOrdened.map((asset) => (
-            <div key={asset.stock}>
-              <h3>{asset.stock}</h3>
-              <span>{asset.price} | </span><span>{asset.variation} %</span><span><button onClick={() => this.addToFavorites(asset)}>Favoritar</button></span>
+            <div key={asset.stock} className="graphs">
+              <h3>{asset.company} ({asset.stock})</h3>
+              <div className="infos">
+                <div>
+                  <span>{asset.price} | </span>
+                  <span>{asset.variation} %</span>
+                </div>
+                <button className="button-favorite" onClick={() => this.addToFavorites(asset)}>
+                  Favoritar
+                </button>
+              </div>
               <XYPlot height={200} width={600}>
                 <AreaSeries
                   data={asset.chart}
