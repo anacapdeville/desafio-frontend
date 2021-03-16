@@ -1,0 +1,89 @@
+:root {
+  --background-body-color: rgb(136, 198, 164);
+  --shadow-color: rgb(52, 46, 52);
+  --button-background-color: rgb(64, 152, 139);
+  --button-background-color-hover: rgb(48, 115, 105);
+}
+
+body {
+  background-color: var(--background-body-color);
+}
+.page {
+  background-color: white;
+  box-shadow: 2px 2px 5px 2px var(--shadow-color);
+  border-radius: 20px;
+  margin-bottom: 20px;
+  margin-left: 15vw;
+  margin-right: 40vw;
+  padding-bottom: 20px;
+  padding-left: 65px;
+  padding-top: 10px;
+  padding-right: 35px;
+  margin-top: 40px;
+}
+
+.title {
+  font-size: 3em;
+  text-align: center;
+}
+
+.order-buttons-div {
+  display: flex;
+  justify-content: space-around;
+}
+
+.order-buttons {
+  background-color: var(--button-background-color);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: medium;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+.order-buttons:hover {
+  background-color: var(--button-background-color-hover);
+  border: none;
+}
+
+.header-div {
+  background-color: white;
+  height: 40px;
+  opacity: 0.8;
+  margin-top: 15px;
+  padding-top: 5px;
+}
+
+.button-header {
+  background-color: white;
+  border: none;
+  font-size: large;
+  opacity: 0.8;
+}
+
+.infos {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-favorite {
+  background-color: var(--button-background-color);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: 900;
+  padding: 10px;
+}
+
+.button-favorite:hover {
+  background-color: var(--button-background-color-hover);
+}
+
+.graphs {
+  border: 3px solid gray;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+}

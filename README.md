@@ -1,53 +1,56 @@
-# Desafio Front-End
+# Lista de ativos
 
-Esse é o nosso desafio para os candidatos à vaga de front-end no [TradeMap](https://www.linkedin.com/company/trademaphub)
 
-Mesmo que você não esteja em nosso processo seletivo, você pode iniciá-lo resolvendo esse desafio.
+## Tabela de conteúdos
+  * [Sobre](#Sobre)
+  * [Instalação](#instalação)
+  * [Como usar](#como-usar)
+  * [Como testar](#como-testar)
+  * [Tecnologias](#tecnologias)
 
-# O Desafio
+## Sobre
+Esse projeto exibe uma lista de ativos que pode ser ordenada pelo preço e variaçao, cada ativo pode ser favoritado. Os ativos favoritados vão para a página de favoritos e também podem ser ordenados por preço e variação. Na página de favoritados é possível remover cada ativo da lista de favoritados.
 
-Te daremos alguns requísitos do que a aplicação precisa ter, porém, todos são funcionais. Tudo que envolve estilização e/ou experiência, fica à seu critério.
+[Deploy da aplicação](https://trademap-ana.herokuapp.com/)
 
-Esperamos que com isso, obtenhamos respostas diferentes e criativas, afinal, somos diferentes e criativos.
+##### Tela da página com lista de todos os ativos:
+![pagina-inicial](https://github.com/anacapdeville/desafio-frontend/blob/desafio-ana/images/lista.png?raw=true)
+##### Tela da página de ativos favoritos:
+![pagina-favoritos](https://github.com/anacapdeville/desafio-frontend/blob/desafio-ana/images/favoritos.png?raw=true)
 
-## Requísitos:
+## Instalação
+1. Acesse o terminal e clone o projeto:
 
-- Sua aplicação precisa ser feita em React ou Angular.
-- Ela precisa ter duas páginas: **Lista** e **Favoritos**.
-    - **Lista**:
-        - A página deve ser capaz de listar todos os ativos presentes no arquivo `stocks.json`
-        - Cada ativo precisa ter um [gráfico de área](https://chartio.com/learn/charts/area-chart-complete-guide/#:~:text=An%20area%20chart%20combines%20the,like%20in%20a%20bar%20chart.), onde cada ponto equivale a uma entrada do `array` presente na propriedade `chart`.
-        - A página deve ser capaz de ordenar os ativos dessa lista por: **Preço** e **Variação**
-        - A página deve conter um botão de **favoritar** em cada um dos ativos da lista.
-    - **Favoritos**:
-        - A página deve ser capaz de listar todos os ativos que foram **favoritados** na página de lista.
-        - A página deve ser capaz de ordenar os ativos dessa lista por: **Preço** e **Variação**.
-        - Os ativos favoritos devem ser persistidos ao recarregar a página.
-- Seu repositório precisa ter instruções de como executá-lo.
+```
+git clone git@github.com:anacapdeville/desafio-frontend.git
+```
 
-## Bonus:
+2. Acesse o diretório:
+```
+cd desafio-frontend
+```
 
-- Utilize variáveis CSS para armazenar as cores utilizadas na estilização da sua aplicação.
-- Crie temas para sua aplicação.
-- Caso esteja desenvolvendo em React, utilize Redux no controle de estado da aplicação.
-- Crie testes unitários para os seus componentes.
+3. Entre na branch que o desafio foi realizado e instale as dependências:
+```
+git checkout desafio-ana
+npm install
+```
 
-## Será um diferencial se você:
+4. Inicializa o projeto:
+```
+npm start
+```
 
-- Realizar o deploy da sua aplicação. **Utilizar Docker te garantirá mais pontos.**
-- Utilizar apenas componentes criados por você. Não é que não gostamos de Design System, mas queremos testar sua capacidade de criar componentes reutilizáveis.
-- Utilizar [commits semânticos](https://www.conventionalcommits.org/pt-br/v1.0.0-beta.4/)
+## Como testar
+Para testar a aplicação digite o seguinte código no terminal:
+```
+npm test
+```
 
-## Como entregar o teste
+## Como usar
+A página inicial possui a lista de todos os ativos. Ao clicar no botão 'Ordenar os ativos por preço' a lista é ordenada de maneira crescente pelo preço. Ao clicar no botão 'Ordenar os ativos pela variação' a lista fica ordenada pela variação dos preços dos ativos de forma crescente. Clicando em 'Ordenação padrão' a lista volta a ficar ordenada como no início. Cada ativo está rodeado por uma borda e dentro da borda está o nome do ativo, o preço do ativo, a variação do preço e o botão de favoritar. Ao clicar nesse botão o ativo escolhido vai para a lista dos ativos favoritados.
+A página de ativos favoritos possui os mesmos botões de ordenação da página com a lista de todos os ativos e eles funcionam da mesma maneira. As informações de cada ativo são as mesmas, porém cada ativo possui um botão para removê-lo da lista de favoritos.
+Na parte superior cada página possui um cabeçalho com links que redirecionam para a página que possui a lista de todos os ativos e para a página que possui os ativos favoritados.
 
-1. Faça um fork desse repositório.
-2. Resolva o desafio da melhor maneira que você puder.
-3. Envie um pull-request para análise do resultado.
-
-## Precisa de inspiração?
-
-É assim que apresentamos nossos ativos hoje:
-
-![Stock Example](.github/stock_example.png)
-
-**Obs: não copie essa imagem, apenas a use de inspiração para criar seu próprio componente.**
+## Tecnologias
+Esse projeto foi desenvolvido em React, React Router Dom para controle da navegação e React-vis para construção dos gráficos.
