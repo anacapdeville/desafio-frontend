@@ -79,14 +79,14 @@ class List extends React.Component {
           </div>
           {dataOrdened.map((asset) => (
             <div key={asset.stock} className="graphs">
-              <h3>{asset.company} ({asset.stock})</h3>
+              <h3 data-testid="asset-name">{asset.company} ({asset.stock})</h3>
               <div className="infos">
                 <div>
                   <span>{asset.price} | </span>
                   <span>{asset.variation} %</span>
                 </div>
-                <button className="button-favorite" onClick={() => this.addToFavorites(asset)}>
-                  Favoritar
+                <button className="button-favorite" data-testid={asset.stock} onClick={() => this.addToFavorites(asset)}>
+                  Favoritar {asset.stock}
                 </button>
               </div>
               <XYPlot height={200} width={600}>

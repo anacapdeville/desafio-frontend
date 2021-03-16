@@ -5,6 +5,7 @@
   * [Sobre](#Sobre)
   * [Instalação](#instalação)
   * [Como usar](#como-usar)
+  * [Como testar](#como-testar)
   * [Tecnologias](#tecnologias)
 
 ## Sobre
@@ -38,10 +39,16 @@ npm install
 npm start
 ```
 
+## Como testar
+Para testar a aplicação digite o seguinte código no terminal:
+```
+npm test
+```
+
 ## Como usar
 A página inicial possui a lista de todos os ativos. Ao clicar no botão 'Ordenar os ativos por preço' a lista é ordenada de maneira crescente pelo preço. Ao clicar no botão 'Ordenar os ativos pela variação' a lista fica ordenada pela variação dos preços dos ativos de forma crescente. Clicando em 'Ordenação padrão' a lista volta a ficar ordenada como no início. Cada ativo está rodeado por uma borda e dentro da borda está o nome do ativo, o preço do ativo, a variação do preço e o botão de favoritar. Ao clicar nesse botão o ativo escolhido vai para a lista dos ativos favoritados.
 A página de ativos favoritos possui os mesmos botões de ordenação da página com a lista de todos os ativos e eles funcionam da mesma maneira. As informações de cada ativo são as mesmas, porém cada ativo possui um botão para removê-lo da lista de favoritos.
 Na parte superior cada página possui um cabeçalho com links que redirecionam para a página que possui a lista de todos os ativos e para a página que possui os ativos favoritados.
 
 ## Tecnologias
-Esse projeto foi desenvolvido em React e React Router Dom para controle da navegação.
+Esse projeto foi desenvolvido em React, React Router Dom para controle da navegação e React-vis para construção dos gráficos.

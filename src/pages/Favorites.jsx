@@ -69,7 +69,7 @@ class Favorites extends React.Component {
                   <span>{asset.variation} %</span>
                 </div>
                 <button className="button-favorite" onClick={() => this.removeFromFavorites(asset)}>
-                  Remover
+                  Remover {asset.stock}
                 </button>
               </div>
               <XYPlot height={200} width={600}>
