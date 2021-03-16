@@ -11,6 +11,8 @@
 ## Sobre
 Esse projeto exibe uma lista de ativos que pode ser ordenada pelo preço e variaçao, cada ativo pode ser favoritado. Os ativos favoritados vão para a página de favoritos e também podem ser ordenados por preço e variação. Na página de favoritados é possível remover cada ativo da lista de favoritados.
 
+[Deploy da aplicação](https://trademap-ana.herokuapp.com/)
+
 ##### Tela da página com lista de todos os ativos:
 ![pagina-inicial](https://github.com/anacapdeville/desafio-frontend/blob/desafio-ana/images/lista.png?raw=true)
 ##### Tela da página de ativos favoritos:
